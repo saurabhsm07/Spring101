@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd" >
+           <!-- used to descibed for all the beans
+           default-init-method=" "   
+           default-method-destroy="" -->
+          
+
+
+
+	<bean id="ATM" class="com.psl.component.SbiATM">
+		<!-- collaborators and configuration for this bean go here -->
+		<!-- used for a matching setter method -->
+		<property name="Bank" ref="BANK" />
+
+	</bean>
+
+<bean id="Driver" class="com.psl.component.Driver">
+ <property name="drivingObj" ref="Plane"></property> 
+
+</bean>
+
+<bean id="Car" class="com.psl.component.Car"></bean>
+<bean id="Bike" class="com.psl.component.Bike"></bean>
+<bean id="Plane" class="com.psl.component.Plane"></bean>
+	<!-- more bean definitions go here -->
+
+<!-- 
+init method method called b4 initialxation and destroy used after 
+bean's usefullness has run its course
+<bean id="HW" class="com.psl.component.HelloWorld"  init-method="<method-name>"  destroy-method="<method name>" >
+			</bean> -->
+		<!-- the scope attribute decides the no of objs created -->
+		<!-- collaborators and configuration for this bean go here -->
+	
+	
+	<bean id="HW" class="com.psl.component.HelloWorld">
+		<!-- the scope attribute decides the no of objs created -->
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+ 
+	<bean id="BANK" class="com.psl.component.SbiBank" scope="prototype">
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+	<bean id="ADD" class="com.psl.component.AddMethod" scope="prototype" autowire="byName">
+		<!-- collaborators and configuration for this bean go here -->
+	</bean>
+
+	<bean id="TE" class="com.psl.component.TextEditor" scope="prototype">
+		<!-- collaborators and configuration for this bean go here -->
+		<!-- used for a matching setter method -->
+		<property name="Schk" ref="SC" />
+
+	</bean>
+
+	<bean id="SC" class="com.psl.component.SpellChecker">
+	</bean>
+
+	<bean id="CCI" class="com.psl.component2.CurrencyConverterImpl">
+	</bean>
+
+</beans>

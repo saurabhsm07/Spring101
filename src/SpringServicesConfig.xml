@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="VehicleDriver" class="com.spring.services.VehicleDriver">
+		<!-- <constructor-arg name="drivingObjs" ref="Plane"></constructor-arg> -->
+		<property name="drivingObj" ref="Bike"></property>
+	</bean>
+
+	<bean id="Car" class="com.springXml.implementation.Car"></bean>
+	<bean id="Bike" class="com.springXml.implementation.Bike"></bean>
+	<bean id="Plane" class="com.springXml.implementation.Plane"></bean>
+
+	<bean id="employee" class="com.springXml.beans.Employee">
+		<property name="id" value="1"></property>
+		<property name="name" value="ssm"></property>
+		<property name="band" value="b"></property>
+	</bean>
+
+	<bean id="OfferPackageProcess" class="com.spring.services.OfferPackageProcess">
+		<!-- <constructor-arg name="WorkHistoryObj" ref="WorkHistory"></constructor-arg> -->
+		<property name="WorkHistoryObj">
+			<bean id="WorkHistoryObj" class="com.springXml.beans.WorkHistory">
+				<property name="numberOfCompanies" value="3"></property>
+				<property name="lastCtc" value="200000"></property>
+				<property name="previousRole" value="sr software engg."></property>
+			</bean>
+		</property>
+	</bean>
+	<alias name="OfferPackageProcess" alias="OfferPackageProcess222"/>
+</beans>
