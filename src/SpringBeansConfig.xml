@@ -1,25 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd" >
-   
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd" >
+           
+   <context:annotation-config></context:annotation-config> <!-- TEST CASE 5: AUTOWIRING USING ANNOTATION STEP 1  -->
+<context:component-scan base-package="com.springXml.*"></context:component-scan> <!--  TEST CASE 6: AUTOWIRING USING ANNOTATIONS COMPONENT SCAN STEP 2 -->
 
 
-<bean id="employee" class="com.springXml.beans.Employee" init-method="postInitialization" destroy-method="postDestruction" scope="prototype">
+<!-- TEST CASE 3: INITIALIZING AND DESTROYING BEANS USING SPRING SPECIFIC AND GENERAL METHODS -->
+<bean id="employee" class="com.springXml.beans.Employee" init-method="postInitialization" destroy-method="postDestruction" scope="prototype" >
+<!-- TEST CASE 1: - SIMPLE CONFIGURATION USING PROPERTY AND CONSTRUCTOR ARGUMENT -->
 <!-- <property name="id" value="1"></property>
 <property name="name" value="ssm"></property>
 <property name="band" value="b"></property> -->
 <constructor-arg name="id" value="1"></constructor-arg>
 <constructor-arg name="name" value="ssm"></constructor-arg>
 <constructor-arg name="band" value="b"></constructor-arg>
-<property name="address" ref="address"></property>
+<property name="addresses">
+
+<!-- TEST CASE 4: TESTING COLLECTIONS WIRING CONCEPTS -->
+<!-- creating a list of properties -->
+<!-- <list>         
+<ref bean="addressHome"/>
+<ref bean="addressWork"/>
+<ref bean="addressHoliday"/>
+</list> -->
+
+<!-- creating a map of properties -->
+<map>
+<entry key="1" value-ref="addressHome"/>
+<entry key="2" value-ref="addressHome"/>
+<entry key="3" value-ref="addressHome"/>
+</map>
+</property>
+<!-- <property name="address" ref="address"></property> -->
 </bean>
 
-<bean id="address" class="com.springXml.beans.Address" init-method="postInitialization" destroy-method="postDestruction" scope="singleton">
+<bean id="student" class="com.springXml.beans.Student">
+<property name="id" value="1"></property>
+<property name="name" value="paresh"></property>
+<property name="rank" value="33"></property>
+</bean>
+
+<bean id="studentA" class="com.springXml.beans.Student">
+<property name="id" value="1"></property>
+<property name="name" value="ssm"></property>
+<property name="rank" value="7"></property>
+</bean>
+
+<bean id="addressHome" class="com.springXml.beans.Address" init-method="postInitialization" destroy-method="postDestruction" scope="prototype">
 <constructor-arg name="state" value="goa"></constructor-arg>
 <constructor-arg name="country" value="india"></constructor-arg></bean>
 
+<bean id="addressSchool" class="com.springXml.beans.Address" init-method="postInitialization" destroy-method="postDestruction" scope="prototype">
+<constructor-arg name="state" value="assonora"></constructor-arg>
+<constructor-arg name="country" value="india"></constructor-arg></bean>
+
+<bean id="addressWork" class="com.springXml.beans.Address" init-method="postInitialization" destroy-method="postDestruction" scope="prototype">
+<constructor-arg name="state" value="UP"></constructor-arg>
+<constructor-arg name="country" value="india"></constructor-arg></bean>
+
+<bean id="addressA" class="com.springXml.beans.Address" init-method="postInitialization" destroy-method="postDestruction" scope="prototype">
+<constructor-arg name="state" value="assam"></constructor-arg>
+<constructor-arg name="country" value="india"></constructor-arg></bean>
 
 <bean id="WorkHistory" class="com.springXml.beans.WorkHistory" >
 <property name="numberOfCompanies" value="2"></property>

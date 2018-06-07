@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd" >
 
-
+<!-- TEST 1: CODING TO INTERFACES -->
 	<bean id="VehicleDriver" class="com.spring.services.VehicleDriver">
 		<!-- <constructor-arg name="drivingObjs" ref="Plane"></constructor-arg> -->
-		<property name="drivingObj" ref="Bike"></property>
+		<property name="drivingObj" ref="Plane"></property>
 	</bean>
 
 	<bean id="Car" class="com.springXml.implementation.Car"></bean>
 	<bean id="Bike" class="com.springXml.implementation.Bike"></bean>
 	<bean id="Plane" class="com.springXml.implementation.Plane"></bean>
 
-	<bean id="employee" class="com.springXml.beans.Employee">
+<!-- using in TEST CASE 6 OF ANNOTATION AUTOWIRING COMPONENT SCAN -->
+	<bean id="employeeA" class="com.springXml.beans.Employee">
 		<property name="id" value="1"></property>
 		<property name="name" value="ssm"></property>
 		<property name="band" value="b"></property>
-	</bean>
+	</bean> 
 
+<!-- TEST CASE 3: TESTING INNER BEANS AND ALLIAS CONCEPTS -->
 	<bean id="OfferPackageProcess" class="com.spring.services.OfferPackageProcess">
 		<!-- <constructor-arg name="WorkHistoryObj" ref="WorkHistory"></constructor-arg> -->
 		<property name="WorkHistoryObj">

@@ -42,10 +42,10 @@ public String toString() {
 }
 
 public static void postInitialization(){
-	System.out.println("address object initialized");
+	System.out.println("address object initialized univeral post initialization method");
 }
 public static void postDestruction(){
-	System.out.println("address object is destroyed");
+	System.out.println("address object is destroyed universal post destruction method");
 }
 
 }

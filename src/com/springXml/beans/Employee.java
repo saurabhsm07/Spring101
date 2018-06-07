@@ -1,13 +1,19 @@
 package com.springXml.beans;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
+/**
+ * @author saurabh_mahambrey
+ *Employee:wired using xml configuration in spring beans config
+ */
 public class Employee implements DisposableBean,InitializingBean { 
 private int id;
 private String name;
 private char band;
-private Address address;
+private Map<String,Address> addresses;
 
 
 public Employee() {
@@ -32,25 +38,12 @@ public void setBand(char band) {
 	this.band = band;
 }
 
-@Override
-public String toString() {
-	StringBuilder builder = new StringBuilder();
-	builder.append("Employee [id=");
-	builder.append(id);
-	builder.append(", name=");
-	builder.append(name);
-	builder.append(", band=");
-	builder.append(band);
-	builder.append(", address=");
-	builder.append(address);
-	builder.append("]");
-	return builder.toString();
+
+public Map<String,Address> getAddress() {
+	return addresses;
 }
-public Address getAddress() {
-	return address;
-}
-public void setAddress(Address address) {
-	this.address = address;
+public void setAddresses(Map<String,Address> address) {
+	this.addresses = address;
 }
 public Employee(int id, String name, char band) {
 	super();
@@ -61,12 +54,12 @@ public Employee(int id, String name, char band) {
 @Override
 public void afterPropertiesSet() throws Exception {
 	// TODO Auto-generated method stub
-	System.out.println("bean is initialized Spring Specific");
+	System.out.println("bean is initialized Spring Specific Initializing bean");
 }
 @Override
 public void destroy() throws Exception {
 	// TODO Auto-generated method stub
-	System.out.println("bean is destroyed Spring Specific");
+	System.out.println("bean is destroyed Spring Specific disposable bean");
 }
 
 public static void postInitialization(){
@@ -74,6 +67,20 @@ public static void postInitialization(){
 }
 public static void postDestruction(){
 	System.out.println("employee object is destroyed");
+}
+@Override
+public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("Employee [id=");
+	builder.append(id);
+	builder.append(", name=");
+	builder.append(name);
+	builder.append(", band=");
+	builder.append(band);
+	builder.append(", addresses=");
+	builder.append(addresses);
+	builder.append("]");
+	return builder.toString();
 }
 
 }
