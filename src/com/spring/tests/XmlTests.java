@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.spring.services.OfferPackageProcess;
 import com.spring.services.VehicleDriver;
+import com.springXml.beans.Address;
 import com.springXml.beans.CiaAgents;
 import com.springXml.beans.Employee;
 import com.springXml.beans.Student;
@@ -79,5 +80,23 @@ contextObj.registerShutdownHook();
 	public void testComponentAnnotationAutowiring(){
 		CiaAgents ciaObj = contextObj.getBean("ciaagents",CiaAgents.class);
 		System.out.println(ciaObj.toString());
+	}
+	
+	/** 7
+	 * testing application context aware to pass the application context to the bean
+	 */
+	@Test
+	public void testApplicationContextAware(){
+		Student stdObj = contextObj.getBean("studentA",Student.class);
+		System.out.println(stdObj.toString());
+	}
+	
+	/** 8
+	 * testing bean post processors implementation com.spring.services.BeanPostProcessorServices
+	 */
+	@Test
+	public void testBeanpostProcessor(){
+		Student stdObj = contextObj.getBean("studentA",Student.class);
+		System.out.println(stdObj.toString());
 	}
 }

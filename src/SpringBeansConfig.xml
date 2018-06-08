@@ -40,13 +40,13 @@
 <!-- <property name="address" ref="address"></property> -->
 </bean>
 
-<bean id="student" class="com.springXml.beans.Student">
+<bean id="student" class="com.springXml.beans.Student" scope="prototype">
 <property name="id" value="1"></property>
 <property name="name" value="paresh"></property>
 <property name="rank" value="33"></property>
 </bean>
 
-<bean id="studentA" class="com.springXml.beans.Student">
+<bean id="studentA" class="com.springXml.beans.Student" scope="prototype">
 <property name="id" value="1"></property>
 <property name="name" value="ssm"></property>
 <property name="rank" value="7"></property>

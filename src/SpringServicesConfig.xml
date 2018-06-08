@@ -36,4 +36,8 @@
 		</property>
 	</bean>
 	<alias name="OfferPackageProcess" alias="OfferPackageProcess222"/>
+	
+	
+	<!-- TEST CASE 7: TESTING BEAN POST PROCESSOR CLASS IMPLEMENTATION FOR GENERIC IMPLEMENTATON -->
+	<bean id="postProcessors" class="com.spring.services.BeanPostProcessorServices"></bean>
 </beans>

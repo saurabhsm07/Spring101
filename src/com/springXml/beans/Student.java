@@ -1,20 +1,24 @@
 package com.springXml.beans;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 /**
  * @author saurabh_mahambrey
  *Student:partially autwired class with context annotation config
  */
-public class Student {
+public class Student implements ApplicationContextAware,BeanNameAware {
 	private int id;
 	private String name;
 	private byte rank; 
 	@Autowired(required=false)                                      //by default its by type so if multiple beans then ambiquity
 	@Qualifier(value="addressSchool")               //to select a perticular bean we must use a qualifier
 	private Address address;
-	
+	private ApplicationContext contextObj;
 	public Student() {
 		// TODO Auto-generated constructor stub
 	}
@@ -63,5 +67,17 @@ public class Student {
 		builder.append(address);
 		builder.append("]");
 		return builder.toString();
+	}
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContextObj)
+			throws BeansException {
+		// TODO Auto-generated method stub
+		this.contextObj = applicationContextObj;
+		System.out.println("setting application context "+contextObj.toString());
+	}
+	@Override
+	public void setBeanName(String beanName) {
+		// TODO Auto-generated method stub
+		System.out.println("bean name "+beanName);
 	}
 }
