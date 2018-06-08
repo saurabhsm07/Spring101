@@ -1,17 +1,20 @@
 package com.springXml.beans;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.MessageSource;
 
 /**
  * @author saurabh_mahambrey
  *Student:partially autwired class with context annotation config
  */
-public class Student implements ApplicationContextAware,BeanNameAware {
+public class Student implements ApplicationContextAware,BeanNameAware,BeanFactoryAware {
 	private int id;
 	private String name;
 	private byte rank; 
@@ -19,6 +22,10 @@ public class Student implements ApplicationContextAware,BeanNameAware {
 	@Qualifier(value="addressSchool")               //to select a perticular bean we must use a qualifier
 	private Address address;
 	private ApplicationContext contextObj;
+	
+	@Autowired
+	private MessageSource msgObj;
+	
 	public Student() {
 		// TODO Auto-generated constructor stub
 	}
@@ -79,5 +86,38 @@ public class Student implements ApplicationContextAware,BeanNameAware {
 	public void setBeanName(String beanName) {
 		// TODO Auto-generated method stub
 		System.out.println("bean name "+beanName);
+	}
+	@Override
+	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		// TODO Auto-generated method stub
+		
+	}
+	public ApplicationContext getContextObj() {
+		return contextObj;
+	}
+	public void setContextObj(ApplicationContext contextObj) {
+		this.contextObj = contextObj;
+	}
+	public MessageSource getMsgObj() {
+		return msgObj;
+	}
+	public void setMsgObj(MessageSource msgObj) {
+		this.msgObj = msgObj;
+	}
+	/**
+	 * testing internationalization normal msg
+	 */
+	
+	public void displayMsg(){
+		
+		System.out.println(this.getMsgObj().getMessage("msg3", null, "nope..",null)+" "+this.getMsgObj().getMessage("msg4", null, "nope..",null));
+	}
+	
+/**
+ * testing internationalization paramaterised msg
+ */
+public void displayNameRank(){
+		
+		System.out.println(this.getMsgObj().getMessage("msg5", new Object[]{this.getName(),this.getRank()}, "nope..",null));
 	}
 }

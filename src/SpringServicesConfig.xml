@@ -40,4 +40,16 @@
 	
 	<!-- TEST CASE 7: TESTING BEAN POST PROCESSOR CLASS IMPLEMENTATION FOR GENERIC IMPLEMENTATON -->
 	<bean id="postProcessors" class="com.spring.services.BeanPostProcessorServices"></bean>
+	
+	<!-- TEST CASE 8: TESTING BEAN FACTORY POST PROCESSOR CLASS IMPLEMENTATION -->
+	<bean id="factoryPostProcessors" class="com.spring.services.BeanFactoryPostProcessorServices"></bean>
+	
+	<!-- TEST CASE 10: Internationlization -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<property name="basenames"> <!-- lists all the properties file in the application -->
+	<list>
+	<value>messages</value>
+	</list>
+	</property>
+	</bean>
 </beans>
